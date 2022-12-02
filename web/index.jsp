@@ -9,8 +9,15 @@
 <html>
   <head>
     <title>$Title$</title>
+    <script type="text/javascript">
+
+    </script>
   </head>
   <body>
-  $END$
+  <form action="uu" method="post">
+    <input type="text" name="account"/><br>
+    <input type="text" name="password"/><br>
+    <input type="submit" value="登录">
+  </form>
   </body>
 </html>

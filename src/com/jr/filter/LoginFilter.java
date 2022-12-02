@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet("/*")
 public class LoginFilter implements Filter {
 
-    String []urls={"/filterweb/login.jsp"};
+    String []urls={"/filterweb/index.jsp"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -41,7 +41,7 @@ public class LoginFilter implements Filter {
             if(obj!=null){
                 filterChain.doFilter(servletRequest,servletResponse);
             }else{
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("index.jsp");
             }
         }
     }

@@ -6,6 +6,6 @@ public interface IUserBiz {
     /*
     * 登录功能
     * */
-    public User login(User user);
+    public boolean login(User user);
 
 }

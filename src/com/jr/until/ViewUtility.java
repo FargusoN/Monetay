@@ -12,20 +12,20 @@ public class ViewUtility {
         System.out.println(ViewUtility.sleectInfoView("2"));
     }
 
-    private String ticket_id;
-    private String no;
-    private String status;
+    private String ticket_id;//开单主键
+    private String no;//凭证编号
+    private String status;//票据状态
     private String openename;//开单企业
     private String openescu;//开单企业统一社会信用码
     private String receiptename;//收单企业
     private String receiptescu;//
-    private String amount;
+    private String amount;//凭证金额
     private String institutyname;//金融机构
-    private String createTime;
-    private String expriyTime;
-    private String paymentInterestItype;
-    private String ticketRemark;
-    private String reviewCecordRemark;
+    private String createTime;//开单日期
+    private String expriyTime;//到期日期
+    private String paymentInterestItype;//付息方式
+    private String ticketRemark;//备注
+    private String reviewCecordRemark;//驳回备注
 
     public ViewUtility() {
     }
