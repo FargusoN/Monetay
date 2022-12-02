@@ -26,7 +26,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         List<Ticketopen> list=new ArrayList<>();
         try {
             con=DBHelper.getconn();
-            String sql="select * from ticket_open where status=A";
+            String sql="select * from ticket_open where status=A and id is not null"+sqlHelper.sqlConcat();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()){
@@ -63,7 +63,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
         List<Ticketopen> list=new ArrayList<>();
         try {
             con=DBHelper.getconn();
-            String sql="select * from ticket_open where status=A and ticket_remark='复核'";
+            String sql="select * from ticket_open where status=A and ticket_remark='复核'"+sqlHelper.sqlConcat();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()){
