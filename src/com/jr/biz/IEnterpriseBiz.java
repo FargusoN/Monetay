@@ -8,7 +8,7 @@ public interface IEnterpriseBiz {
     /*
     * 通过id获取企业信息
     * */
-    public Enterprise getEnterpriseInfo(int id);
+    public  Enterprise getEnterpriseInfo( int id);
 
     /*
     *获取所有企业名称

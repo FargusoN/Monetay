@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InstitutyDaoImpl implements IInstitutyDao {
@@ -21,7 +22,27 @@ public class InstitutyDaoImpl implements IInstitutyDao {
      * */
     @Override
     public List<Instituty> queryAllNames() {
-        return null;
+        List<Instituty> list=new ArrayList<>();
+        try {
+            con=DBHelper.getconn();
+            String sql="select name from instituty";
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                instituty1=new Instituty();
+                instituty1.setName(rs.getString(1));
+                list.add(instituty1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return list;
     }
     /**
      *增删改通用方法

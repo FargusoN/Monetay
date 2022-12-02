@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnterpriseDaoImpl implements IEnterpriseDao {
@@ -21,14 +22,62 @@ public class EnterpriseDaoImpl implements IEnterpriseDao {
       */
     @Override
     public Enterprise queryByid(int id) {
-        return null;
+        try {
+            con=DBHelper.getconn();
+            String sql="select * from enterprise where id=?";
+            ps=con.prepareStatement(sql);
+            ps.setInt(1,enterprise1.getId());
+            rs=ps.executeQuery();
+            while(rs.next()){
+              enterprise1=new Enterprise();
+              enterprise1.setId(rs.getInt(1));
+              enterprise1.setName(rs.getString(2));
+              enterprise1.setSocialUniformCcode(rs.getString(3));
+              enterprise1.setEmail(rs.getString(4));
+              enterprise1.setPhone(rs.getString(5));
+              enterprise1.setAddress(rs.getString(6));
+              enterprise1.setScale(rs.getString(7));
+              enterprise1.setFax(rs.getString(8));
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return enterprise1;
     }
     /**
      *查询所有企业名称
      */
     @Override
     public List<Enterprise> queryAllEnterpriseNames() {
-        return null;
+        List<Enterprise> list=new ArrayList<>();
+        try {
+            con=DBHelper.getconn();
+            String sql="select name from enterprise";
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                enterprise1=new Enterprise();
+                enterprise1.setName(rs.getString(1));
+                list.add(enterprise1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return list;
+
     }
 
     /**
