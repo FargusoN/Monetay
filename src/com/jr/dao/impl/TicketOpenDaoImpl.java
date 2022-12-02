@@ -97,7 +97,7 @@ public class TicketOpenDaoImpl implements ITicketOpenDao {
      * */
     @Override
     public int insertTicket(Ticketopen ticketopen) {
-        String sql="insert into ticket_open values(?,?,?,?,?,?,?,?,?,?,?.?)";
+        String sql="insert into ticket_open values(null,?,?,?,?,?,?,?,?,?,?,?)";
         int i=upd(sql);
         return i;
     }
