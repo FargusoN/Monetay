@@ -14,7 +14,12 @@ import java.util.List;
 public class TicketOpenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+  //      super.doGet(req, resp);
+        req.setCharacterEncoding("utf-8"); //设置请求信息的字符为utf-8
+        resp.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
+
     }
 
     @Override
@@ -39,7 +44,13 @@ public class TicketOpenServlet extends HttpServlet {
  * 可以直接在里边拼接所需要属性的字符串
  * */
     protected void getTicketopeninfoByconditions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8"); //设置请求信息的字符为utf-8
+        resp.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        boolean boo=true;
+        if (boo){
 
+        }
     }
 
     private void dailyincomenumber(HttpServletRequest request, HttpServletResponse response){
