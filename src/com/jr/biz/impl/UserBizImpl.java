@@ -11,6 +11,6 @@ public class UserBizImpl implements IUserBiz {
     UserDaolmpl udl=new UserDaolmpl();
     @Override
     public User login(User user) {
-        return udl.queryByAccountAndPassword(user);
+        return udl.queryByAccountAndPassword();
     }
 }

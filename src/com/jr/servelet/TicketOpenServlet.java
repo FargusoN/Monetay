@@ -1,10 +1,15 @@
 package com.jr.servelet;
 
+import com.jr.entry.Ticketopen;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class TicketOpenServlet extends HttpServlet {
     @Override
@@ -34,6 +39,10 @@ public class TicketOpenServlet extends HttpServlet {
  * 可以直接在里边拼接所需要属性的字符串
  * */
     protected void getTicketopeninfoByconditions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    private void dailyincomenumber(HttpServletRequest request, HttpServletResponse response){
 
     }
 
