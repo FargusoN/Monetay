@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+
 
 public class TicketOpenServlet extends HttpServlet {
     @Override
@@ -35,7 +34,10 @@ public class TicketOpenServlet extends HttpServlet {
     /**
      * 获取所有ticketopen开单表中的信息
      */
-    protected void getAllTicketopeninfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void getAllTicketopeninfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8"); //设置请求信息的字符为utf-8
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
 
     }
 /**
@@ -43,18 +45,17 @@ public class TicketOpenServlet extends HttpServlet {
  * 这里使用前台异步查询,提供了字符串拼接工具类
  * 可以直接在里边拼接所需要属性的字符串
  * */
-    protected void getTicketopeninfoByconditions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8"); //设置请求信息的字符为utf-8
-        resp.setCharacterEncoding("utf-8");
-        resp.setContentType("text/html;charset=UTF-8");
-        boolean boo=true;
-        if (boo){
+    protected void getTicketopeninfoByconditions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8"); //设置请求信息的字符为utf-8
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
 
-        }
     }
 
-    private void dailyincomenumber(HttpServletRequest request, HttpServletResponse response){
-
+    private void dailyincomenumber(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8"); //设置请求信息的字符为utf-8
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
     }
 
 }
