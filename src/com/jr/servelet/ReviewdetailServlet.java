@@ -1,7 +1,6 @@
 package com.jr.servelet;
 
 
-
 import com.jr.until.ViewUtility;
 
 import javax.servlet.ServletException;
@@ -27,7 +26,6 @@ public class ReviewdetailServlet extends HttpServlet {
         request.getRequestDispatcher("check-detail.jsp").forward(request,response);
 
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
