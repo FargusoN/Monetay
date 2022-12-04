@@ -37,7 +37,7 @@ public class TicketopenBizImpl implements ITicketopenBiz {
      *更改开单数据信息
      */
     @Override
-    public Ticketopen upateTicketStatus(Ticketopen ticketopen) {
+    public int upateTicketStatus(Ticketopen ticketopen) {
         return tic.upateTicketStatus(ticketopen);
     }
 }

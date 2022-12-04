@@ -35,19 +35,19 @@ public class Userervlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-        UserBizImpl userBiz=new UserBizImpl();
-        User user=new User();
-        String account=request.getParameter("account");
-        String password=request.getParameter("password");
+        UserBizImpl userBiz = new UserBizImpl();
+        User user = new User();
+        String account = request.getParameter("account");
+        String password = request.getParameter("password");
         user.setAccount(account);
         user.setPassword(password);
-        if (userBiz.login(user)!=null){
-            request.getRequestDispatcher("ticket-open.jsp").forward(request,response);
-            HttpSession session=request.getSession();
-            session.setAttribute("user",user);
-        }else{
-            request.getRequestDispatcher("login.jsp").forward(request,response);
+        if (userBiz.login(user) != null) {
+            request.getRequestDispatcher("ticket-open.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-
     }
+
 }

@@ -24,5 +24,5 @@ public interface ITicketopenBiz {
     /**
      *更改开单数据信息
      */
-    public Ticketopen upateTicketStatus(Ticketopen ticketopen);
+    public int upateTicketStatus(Ticketopen ticketopen);
 }
