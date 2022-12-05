@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 
 <head>
@@ -37,8 +38,9 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
-                        src="assets/img/user01.png"></span>
+                    <span class="tpl-header-list-user-nick">${user.name}</span><span
+                        class="tpl-header-list-user-ico"> <img
+                        src="assets/img/ikun.jpg"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="login.jsp"><span class="am-icon-power-off"></span> 退出</a></li>
@@ -120,8 +122,10 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 开单企业</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input disabled type="text" value="百度科技有限公司" id="user-name"
+                                            <input disabled type="text" id="enterprise1-name"
+                                                   value=""
                                                    placeholder="请输入开单企业">
+
                                         </div>
                                     </div>
                                 </form>
@@ -131,7 +135,10 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input disabled type="text" id="user-name" placeholder="请输入统一社会信用代码">
+                                            <input disabled type="text" id="open-suc"
+                                                   value=""
+                                                   placeholder="请输入统一社会信用代码">
+                                            <%--                                            ${enterparesbysesson.socialUniformCcode}--%>
                                         </div>
                                     </div>
                                 </form>
@@ -141,11 +148,11 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 收单企业</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <select data-am-selected>
+                                            <select data-am-selected id="order-receiving-enterprise">
                                                 <option value="">请选择收单企业</option>
-                                                <option value="a">百度科技有限公司</option>
-                                                <option value="b">京东集团</option>
-                                                <option value="c">小米</option>
+                                                <%--                                                <option value="a">百度科技有限公司</option>--%>
+                                                <%--                                                <option value="b">京东集团</option>--%>
+                                                <%--                                                <option value="c">小米</option>--%>
                                             </select>
                                         </div>
                                     </div>
@@ -155,8 +162,9 @@
                                 <form class="am-form am-form-horizontal">
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
-                                        <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input disabled type="text" id="user-name" placeholder="请输入统一社会信用代码">
+                                        <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;"
+                                             id="reci-enterpeise-esuc-div">
+                                            <input id='inputtt' disabled type='text' value='' placeholder='请输入统一社会信用代码'>
                                         </div>
                                     </div>
                                 </form>
@@ -166,7 +174,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 凭证金额</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input type="text" id="user-name" placeholder="请输入凭证金额">
+                                            <input type="text" id="amount-voucher" placeholder="请输入凭证金额">
                                         </div>
                                     </div>
                                 </form>
@@ -176,11 +184,11 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 金融机构</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <select data-am-selected>
+                                            <select data-am-selected id="bank-options">
                                                 <option value="">请选择金融机构</option>
-                                                <option value="a">兴业银行</option>
-                                                <option value="b">工商银行</option>
-                                                <option value="c">中国银行</option>
+                                                <%--                                                <option value="a">兴业银行</option>--%>
+                                                <%--                                                <option value="b">工商银行</option>--%>
+                                                <%--                                                <option value="c">中国银行</option>--%>
                                             </select>
                                         </div>
                                     </div>
@@ -192,7 +200,7 @@
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 开单日期</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
                                             <input disabled type="text" class="am-form-field" data-am-datepicker
-                                                   value="2022-11-16" placeholder="&nbsp;&nbsp;请选择日期"
+                                                   id="current-time" value="" placeholder="&nbsp;&nbsp;请选择日期"
                                                    style="border: 1px solid #c2cad8;width: 100%;border-radius: 3px;">
                                         </div>
                                     </div>
@@ -203,7 +211,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 到期日期</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <input type="text" class="am-form-field" data-am-datepicker
+                                            <input id="expiry-time" type="text" class="am-form-field" data-am-datepicker
                                                    placeholder="&nbsp;&nbsp;请选择日期"
                                                    style="border: 1px solid #c2cad8;width: 100%;border-radius: 3px;">
                                         </div>
@@ -215,7 +223,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label star"> 付息方式</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                            <select placeholder="请选择付息方式" data-am-selected>
+                                            <select id="pay-money-model" placeholder="请选择付息方式" data-am-selected>
                                                 <option value="a">融资方付息</option>
                                                 <option value="b">核心企业付息</option>
                                             </select>
@@ -228,7 +236,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                         <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                                <textarea class="" rows="4" id="user-intro"
+                                                <textarea id="ticket-remark" class="" rows="4" id="user-intro"
                                                           placeholder="请输入备注"></textarea>
                                         </div>
                                     </div>
@@ -277,12 +285,121 @@
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
+    // location.reload();
     // 提交按钮
-    $(function () {
-        $('#submitBtn').on('click', function () {
-            $('#showDiv').hide();
-            $('#resultDiv').show();
+
+
+    var myDate = new Date;
+
+    var year = myDate.getFullYear();//获取当前年
+    var yue = myDate.getMonth() + 1;//获取当前月
+    var date = myDate.getDate();//获取当前日
+    var h = myDate.getHours();//获取当前小时数(0-23)
+    var m = myDate.getMinutes();//获取当前分钟数(0-59)
+    var s = myDate.getSeconds();//获取当前秒
+
+
+    $(document).ready(function () {
+        $(function () {
+
+            var DateStr = year + "-" + yue + "-" + date;
+            $("#current-time").val(DateStr);
+        })
+
+        $.get("enterpriseservlet","enterpriseservletstate=2&entrtpriseid=${users.enterPriseId}", function (asd0) {
+            eval("var enterprisebyid=" + asd0);
+            $("#enterprise1-name").val(enterprisebyid["name"]);
+            $("#open-suc").val(enterprisebyid["socialUniformCcode"]);
+        })
+
+       $.get("enterpriseservlet","enterpriseservletstate=1", function (asd1) {
+           //开单企业下拉框
+           eval("var list1=" + asd1);      /*将字符串转成对象格式*/
+           for (var i = 0; i < list1.length; i++) {
+               var obj = "<option value='" + list1[i].id + "'>" + list1[i].name + "</option>";
+               $(obj).appendTo($("[id='order-receiving-enterprise']"));
+           }
+       });
+        $.get("instiutyservlet","instiutyservletstate=1", function (asd3) {
+            //银行下拉框
+            eval("var list3=" + asd3);      /*将字符串转成对象格式*/
+            for (var i = 0; i < list3.length; i++) {
+                var obj = "<option value='" + list3[i].id + "'>" + list3[i].name + "</option>";
+                $(obj).appendTo($("[id='bank-options']"));
+            }
         });
+
+        $("[id='order-receiving-enterprise']").change(function () {
+            var reciveID = $(this).val();
+            $.get("enterpriseservlet","enterpriseservletstate=2&entrtpriseid=" + reciveID, function (asd2) {
+                eval("var list2=" + asd2);
+                $("#inputtt").val(list2["socialUniformCcode"])
+            });
+
+            // function (enterPriseList) {
+            // eval("var enterprisebyidlist=" + enterPriseList);
+            // for (var i = 0; i < enterprisebyidlist.length; i++) {
+            //     var entesuc1= enterprisebyidlist[i].socialUniformCcode;
+            //     var enterprise1name=enterprisebyidlist[i].name;
+            //     $(entesuc1).appendTo($("[id='reci-enterpeise-esuc']"));
+            //     $(enterprise1name).appendTo($("[id='enterprise1-name']"));
+            // }
+            // });
+            // for (var i = 0; i < list2.length; i++) {
+            //     alert(list2[i].socialUniformCcode);
+            // $("#inputtt").html(list2[i].socialUniformCcode)
+            // // val();
+            //     }
+            // // $("[id='reci-enterpeise-esuc-div']").empty();
+            // var reciventerpriseid = $(this).val();
+            // $.get("enterpriseservlet?enterpriseservletstate=2&entrtpriseid=" + reciventerpriseid, function (asd1) {
+            //     eval("var list2=" + asd1);
+            //     alert(asd1);
+            //         var reciventerprisesocial =
+            //             "<input id='inputtt' disabled type='text' value='" + list2[0].socialUniformCcode + "' placeholder='请输入统一社会信用代码'>"
+            //         $(reciventerprisesocial).appendTo($("[id='reci-enterpeise-esuc-div']"));
+            //
+            // })
+
+        })
+
+
+        // $(function () {
+        //     $('#submitBtn').on('click', function () {
+        //         $('#showDiv').hide();
+        //         $('#resultDiv').show();
+        //     });
+        // });
+        $("#submitBtn").click(function () {
+
+            var openterpeiseID = $("[id='enterprise1-name']").val();//开单企业ID
+            var recenterpeiseID = $("[id='order-receiving-enterprise']").val();//收单企业Id
+            var amountofvoucher = $("[id='amount-voucher']").val();//凭证金额
+            var bankId = $("[id='bank-options']").val();//银行Id
+            var createtime = $("[id='current-time']").val();//创建日期
+            var expirytime = $("[id='expiry-time']").val();//到期金额
+            var paymentmed = $("[id='pay-money-model']").val();//付息方式
+            var ticketmark = $("[id='ticket-remark']").val();//开单备注
+            $.get("ticketopentservlet","ticketopentservletstate=6&" +
+                "&enterprise_id=${users.enterPriseId}" +
+                "&acquirer_enterprise_id=" + recenterpeiseID +
+                "&amount=" + amountofvoucher +
+                "&instituty_id=" + bankId +
+                "&create_time=" + createtime +
+                "&expiry_time=" + expirytime +
+                "&payment_interest_type=" + paymentmed +
+                "&status=2" +
+                "&ticket_remark=" + ticketmark, function (trueorfalse) {
+                if (trueorfalse != null || trueorfalse != undefined) {
+                    $('#showDiv').hide();
+                    $('#resultDiv').show();
+                }
+            });
+
+
+        })
+
+
     });
 </script>
 </body>

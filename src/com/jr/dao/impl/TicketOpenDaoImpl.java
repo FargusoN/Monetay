@@ -1,140 +1,220 @@
 package com.jr.dao.impl;
 
 import com.jr.dao.ITicketOpenDao;
-import com.jr.entry.Ticketopen;
-import com.jr.until.DBHelper;
-import com.jr.until.SqlHelper;
+import com.jr.entry.TicketOpen;
+import com.jr.entry.User;
+import com.jr.util.DBHelper;
+import com.jr.util.SqlHelper;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TicketOpenDaoImpl implements ITicketOpenDao {
+    //查询单个开单表的no编号 ,用模糊查询,使用ajax完成异步查询,(要写工具类)
+    //查询所有符合条件的开单列表信息
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    Ticketopen ticketopen1;
-    /**
-     * 获取符合条件的所有状态的开单信息（开单）
-     * */
-    @Override
-    public List<Ticketopen> queryAllByConditions(Ticketopen ticketopen, SqlHelper sqlHelper) {
-        List<Ticketopen> list=new ArrayList<>();
-        try {
-            con=DBHelper.getconn();
-            String sql="select * from ticket_open where status=A and id is not null"+sqlHelper.sqlConcat();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
-            while (rs.next()){
-                ticketopen1=new Ticketopen();
-                ticketopen1.setId(rs.getInt(1));
-                ticketopen1.setNo(rs.getString(2));
-                ticketopen1.setEnterPriseId(rs.getString(3));
-                ticketopen1.setAcquirerEnterPriseId(rs.getString(4));
-                ticketopen1.setAmount(rs.getDouble(5));
-                ticketopen1.setInstitutyId(rs.getInt(6));
-                ticketopen1.setCreateTime(rs.getDate(7));
-                ticketopen1.setExpiryTime(rs.getDate(8));
-                ticketopen1.setPaymentInterestType(rs.getString(9));
-                ticketopen1.setStatus(rs.getString(10));
-                ticketopen1.setUplinkAddress(rs.getString(11));
-                list.add(ticketopen1);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DBHelper.closeAll(rs,ps,con);
-        }
-        return list;
-    }
-    /**
-     * 查询符合条件的开单中的开单信息（复核）
-     * */
-    @Override
-    public List<Ticketopen> queryAllByConditionsOnTheBill(Ticketopen ticketopen, SqlHelper sqlHelper) {
-        List<Ticketopen> list=new ArrayList<>();
-        try {
-            con=DBHelper.getconn();
-            String sql="select * from ticket_open where status=A and ticket_remark='复核'"+sqlHelper.sqlConcat();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
-            while (rs.next()){
-                ticketopen1=new Ticketopen();
-                ticketopen1.setId(rs.getInt(1));
-                ticketopen1.setNo(rs.getString(2));
-                ticketopen1.setEnterPriseId(rs.getString(3));
-                ticketopen1.setAcquirerEnterPriseId(rs.getString(4));
-                ticketopen1.setAmount(rs.getDouble(5));
-                ticketopen1.setInstitutyId(rs.getInt(6));
-                ticketopen1.setCreateTime(rs.getDate(7));
-                ticketopen1.setExpiryTime(rs.getDate(8));
-                ticketopen1.setPaymentInterestType(rs.getString(9));
-                ticketopen1.setStatus(rs.getString(10));
-                ticketopen1.setUplinkAddress(rs.getString(11));
-                list.add(ticketopen1);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DBHelper.closeAll(rs,ps,con);
-        }
-        return list;
-    }
-    /**
-     * 添加开单信息
-     * */
-    @Override
-    public int insertTicket(Ticketopen ticketopen) {
-        String sql="insert into ticket_open values(null,?,?,?,?,?,?,?,?,?,?,?)";
-        int i=upd(sql);
-        return i;
-    }
 
-    /**
-     *更改列表信息
-     */
     @Override
-    public int upateTicketStatus(Ticketopen ticketopen) {
-    String sql="update ticket_open set status=?";
-    int i=upd(sql);
-    return i;
-    }
+    public List<TicketOpen> queryAllTicketopenByConditions(TicketOpen ticketOpen, SqlHelper sqlHelper) {
+        List<TicketOpen> ticketOpens = new ArrayList<>();
 
-    /**
-     *增删改通用方法
-     */
-    public int upd(String sql, Object... objs) {
-
-        int num = 0;
         try {
             con = DBHelper.getconn();
+            String sql = "select * from ticket_open where id is not null" + sqlHelper.sqlConcat();
             ps = con.prepareStatement(sql);
-            for (int i = 0; i < objs.length; i++) {
-                ps.setObject(i + 1, objs[i]);
-            }
-            num = ps.executeUpdate();
+            rs = this.ps.executeQuery();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            while (rs.next()) {
+               TicketOpen ticketOpen1=new TicketOpen();
+                 ticketOpen1.setId(rs.getInt("id"));
+                 ticketOpen1.setNo(rs.getString("no"));
+                 ticketOpen1.setEnterPriseId(rs.getString("enterprise_id"));
+                 ticketOpen1.setAcquirerEnterPriseId(rs.getString("acquirer_enterprise_id"));
+                 ticketOpen1.setAmount(rs.getDouble("amount"));
+                 ticketOpen1.setInstitutyId(rs.getInt("instituty_id"));
+                 ticketOpen1.setCreateTime(simpleDateFormat.parse(rs.getString("create_time")));
+                 ticketOpen1.setExpiryTime(simpleDateFormat.parse(rs.getString("expiry_time")));
+                 ticketOpen1.setPaymentInterestType(rs.getString("payment_interest_type"));
+                 ticketOpen1.setStatus(rs.getString("status"));
+                 ticketOpen1.setUplinkAddress(rs.getString("uplink_address"));
+                 ticketOpen1.setTicket_remark(rs.getString("ticket_remark"));
+                 ticketOpens.add(ticketOpen1);
 
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         } finally {
             DBHelper.closeAll(rs, ps, con);
         }
-        return num;
+
+        return ticketOpens;
+    }
+
+    @Override
+    public List<TicketOpen> QueryAllTicketopenByObTheBill(TicketOpen ticketOpen) {
+        List<TicketOpen> ticketOpens = new ArrayList<>();
+
+        try {
+            con = DBHelper.getconn();
+            String sql = "select * from ticket_open where  status='开单中' ";
+            ps = con.prepareStatement(sql);
+            rs = this.ps.executeQuery();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            while (rs.next()) {
+                TicketOpen ticketOpen1=new TicketOpen();
+                ticketOpen1.setId(rs.getInt("id"));
+                ticketOpen1.setNo(rs.getString("no"));
+                ticketOpen1.setEnterPriseId(rs.getString("enterprise_id"));
+                ticketOpen1.setAcquirerEnterPriseId(rs.getString("acquirer_enterprise_id"));
+                ticketOpen1.setAmount(rs.getDouble("amount"));
+                ticketOpen1.setInstitutyId(rs.getInt("instituty_id"));
+                ticketOpen1.setCreateTime(simpleDateFormat.parse(rs.getString("create_time")));
+                ticketOpen1.setExpiryTime(simpleDateFormat.parse(rs.getString("expiry_time")));
+                ticketOpen1.setPaymentInterestType(rs.getString("payment_interest_type"));
+                ticketOpen1.setStatus(rs.getString("status"));
+                ticketOpen1.setUplinkAddress(rs.getString("uplink_address"));
+                ticketOpen1.setTicket_remark(rs.getString("ticket_remark"));
+                ticketOpens.add(ticketOpen1);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBHelper.closeAll(rs, ps, con);
+        }
+        return ticketOpens;
+    }
+
+
+    //    插入一条Ticketopen数据
+    @Override
+    public int insertTicketopen(TicketOpen ticketOpen) {
+        int i;
+        try {
+            con = DBHelper.getconn();
+            String sql = "insert into ticket_open  values (null,?,?,?,?,?,?,?,?,?,?,?)";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ticketOpen.getNo());
+            ps.setString(2, ticketOpen.getEnterPriseId());
+            ps.setString(3, ticketOpen.getAcquirerEnterPriseId());
+            ps.setDouble(4, ticketOpen.getAmount());
+            ps.setInt(5, ticketOpen.getInstitutyId());
+            ps.setString(6, new SimpleDateFormat("yyyy-MM-dd").format(ticketOpen.getCreateTime()));
+            ps.setString(7, new SimpleDateFormat("yyyy-MM-dd").format(ticketOpen.getExpiryTime()));
+            ps.setString(8, ticketOpen.getPaymentInterestType());
+            ps.setString(9, ticketOpen.getStatus());
+            ps.setString(10, ticketOpen.getUplinkAddress());
+            ps.setString(11, ticketOpen.getTicket_remark());
+
+            i = ps.executeUpdate();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBHelper.closeAll(rs, ps, con);
+        }
+
+        System.out.println("++++++++++++++++++++++++++++++++++"+i);
+        return i;
+    }
+    /*
+
+     */
+
+    @Override
+    public int updateTicketopen(TicketOpen ticketOpen) {
+        int i;
+        try {
+            con = DBHelper.getconn();
+            String sql = "update ticket_open set";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ticketOpen.getNo());
+            ps.setString(2, ticketOpen.getEnterPriseId());
+            ps.setString(3, ticketOpen.getAcquirerEnterPriseId());
+            ps.setDouble(4, ticketOpen.getAmount());
+            ps.setInt(5, ticketOpen.getInstitutyId());
+            ps.setString(6, new SimpleDateFormat("yyyy-MM-dd").format(ticketOpen.getCreateTime()));
+            ps.setString(7, new SimpleDateFormat("yyyy-MM-dd").format(ticketOpen.getExpiryTime()));
+            ps.setString(8, ticketOpen.getPaymentInterestType());
+            ps.setString(9, ticketOpen.getStatus());
+            ps.setString(10, ticketOpen.getUplinkAddress());
+            ps.setString(11, ticketOpen.getTicket_remark());
+
+            i = ps.executeUpdate();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBHelper.closeAll(rs, ps, con);
+        }
+        return i;
+    }
+
+    @Override
+    public TicketOpen selectTicketopenbyUserEnterId(User user) {
+        TicketOpen t = null;
+        try {
+            con = DBHelper.getconn();
+            String sql = "select * from ticket_open where id =?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user.getEnterPriseId());
+            rs = ps.executeQuery();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            if (rs.next()) {
+                t = new TicketOpen(
+                        rs.getInt("id"),
+                        rs.getString("no"),
+                        rs.getString("enterprise_id"),
+                        rs.getString("acquirer_enterprise_id"),
+                        rs.getDouble("amount"),
+                        rs.getInt("instituty_id"),
+                        simpleDateFormat.parse(rs.getString("create_time")),
+                        simpleDateFormat.parse(rs.getString("expiry_time")),
+                        rs.getString("payment_interest_type"),
+                        rs.getString("status"),
+                        rs.getString("uplink_address"),
+                        rs.getString("ticket_remark")
+                );
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBHelper.closeAll(rs, ps, con);
+        }
+
+        return t;
     }
 }
+

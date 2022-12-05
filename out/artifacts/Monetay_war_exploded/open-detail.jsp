@@ -21,8 +21,8 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
-                        src="assets/img/user01.png"></span>
+                    <span class="tpl-header-list-user-nick">${user.name}</span><span class="tpl-header-list-user-ico"> <img
+                        src="assets/img/ikun.jpg"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="login.jsp"><span class="am-icon-power-off"></span> 退出</a></li>
@@ -96,120 +96,129 @@
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" >
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证编号</label>
-                                <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    N20220328000001
+                                <div   class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
+<%--                                    N20220328000001--%>
+                                    ${ticketInfoviewUitlity.no}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="ticketopen-status">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">处理状态</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    开单中<span style="font-size: 12px;color: #999;margin-left: 5px;"> 内部复核中</span>
+                                    ${ticketInfoviewUitlity.status}<span style="font-size: 12px;color: #999;margin-left: 5px;"> 内部复核中</span>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="ticket-open-ename">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">开单企业</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    百度科技有限公司
+                                    ${ticketInfoviewUitlity.openename}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="open-unified-social-credit-codes">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
-                                <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    91110000802100XXXX
+                                <div class="am-u-sm-9"
+                                     style="margin-top: 4px;font-size: 16px;">
+<%--                                    91110000802100XXXX--%>
+                                        ${ticketInfoviewUitlity.openesuc}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="ticket-received-ename">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">收单企业</label>
-                                <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    腾讯科技有限公司
+                                <div class="am-u-sm-9"
+                                     style="margin-top: 4px;font-size: 16px;">
+                                    ${ticketInfoviewUitlity.receiptename}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="recived-unified-social-credit-codes">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">统一社会信用代码</label>
-                                <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    91110000802100AAAA
+                                <div class="am-u-sm-9"
+                                     style="margin-top: 4px;font-size: 16px;">
+                                    ${ticketInfoviewUitlity.receiptesuc}
+                                <%--                                    91110000802100AAAA--%>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="amount-of-voucher">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">凭证金额</label>
-                                <div class="am-u-sm-9" style="font-size: 19px;color: red;font-weight: 500;">
-                                    10,000,000.00元
+                                <div class="am-u-sm-9"
+                                     style="font-size: 19px;color: red;font-weight: 500;">
+                                    ${ticketInfoviewUitlity.amount}
+<%--                                    10,000,000.00元--%>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="instituty-name">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">金融机构</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    工商银行
+                                    ${ticketInfoviewUitlity.institutyname}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="create-Time">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">开单日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    2021-03-28
+                                    ${ticketInfoviewUitlity.createTime}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="expriy-Time">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">到期日期</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    2021-04-28 <span style="font-size: 12px;color: #999">剩余 10 天</span>
+                                    ${ticketInfoviewUitlity.expriyTime} <span style="font-size: 12px;color: #999">剩余 10 天</span>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="mode-of-interest-payment">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">付息方式</label>
-                                <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    融资企业付息
+                                <div class="am-u-sm-9"
+                                     style="margin-top: 4px;font-size: 16px;">
+                                    ${ticketInfoviewUitlity.paymentInterestItype}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="ticket-Remark">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    备注信息备注信息备注信息备注信息备注信息备注信息备注信息
+                                    ${ticketInfoviewUitlity.ticketRemark}
                                 </div>
                             </div>
                         </form>
@@ -235,10 +244,12 @@
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-6">
                         <form class="am-form am-form-horizontal">
-                            <div class="am-form-group">
+                            <div class="am-form-group" id="remarks-block">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">备注</label>
                                 <div class="am-u-sm-9" style="margin-top: 4px;font-size: 16px;">
-                                    <textarea disabled class="" rows="4" id="user-intro" placeholder="审核备注"></textarea>
+                                    <textarea disabled class="" rows="4" id="user-intro" placeholder="审核备注">
+                                        ${ticketInfoviewUitlity.reviewCecordRemark}
+                                    </textarea>
                                 </div>
                             </div>
                         </form>
@@ -251,12 +262,25 @@
         </div>
     </div>
 </div>
+
+
+</body>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
+<script type="text/javascript">
+
+
+
+    // $(tickeopeninfo[0].amount).appendTo($("[id='amount-of-voucher']"));
+    // $(tickeopeninfo[0].receiptename).appendTo($("[id='ticket-received-ename']"));
+    // $(tickeopeninfo[0].receiptescu).appendTo($("[id='recived-unified-social-credit-codes']"));
+    // $(tickeopeninfo[0].institutyname).appendTo($("[id='instituty-name']"));
+    // $(tickeopeninfo[0].createTime).appendTo($("[id='create-Time']"));
+    // $(tickeopeninfo[0].expriyTime).appendTo($("[id='expriy-Time']"));
+    // $(tickeopeninfo[0].paymentInterestItype).appendTo($("[id='mode-of-interest-payment']"));
+    // $(tickeopeninfo[0].ticketRemark).appendTo($("[id='ticket-Remark']"));
+    // $(tickeopeninfo[0].reviewCecordRemark).appendTo($("[id='remarks-block']"));
 
 </script>
-</body>
-
 </html>

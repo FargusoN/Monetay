@@ -20,8 +20,8 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
-                        src="assets/img/user01.png"></span>
+                    <span class="tpl-header-list-user-nick">${user.name}</span><span class="tpl-header-list-user-ico"> <img
+                        src="assets/img/ikun.jpg"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="login.jsp"><span class="am-icon-power-off"></span> 退出</a></li>
@@ -88,27 +88,28 @@
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">凭证编号</span>
                                 </span>
                             <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;请输入凭证编号"
-                                   style="border: 1px solid #c2cad8;width: 77%;border-radius: 3px;">
+                                   style="border: 1px solid #c2cad8;width: 77%;border-radius: 3px;"
+                                   id="certificate-number-no">
                         </div>
                     </div>
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">收单企业</span>
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="">请选择收单企业</option>
-                                <option value="a">百度科技有限公司</option>
-                                <option value="b">京东集团</option>
-                                <option value="c">小米</option>
+                            <select data-am-selected="{btnSize: 'sm'}" id="openticketenterid">
+                                <option value="">--请选择企业--</option>
+                                <%--<option value="a">百度科技有限公司</option>--%>
+                                <%--<option value="b">京东集团</option>--%>
+                                <%--<option value="c">小米</option>--%>
                             </select>
                         </div>
                     </div>
                     <div class="am-u-sm-6 am-u-md-3">
                         <div class="am-form-group">
                             <span style="font-size: 14px;">开单企业</span>
-                            <select class="am-form-field" data-am-selected="{btnSize: 'sm'}">
-                                <option value="">请选择开单企业</option>
-                                <option value="a">腾讯科技有限公司</option>
-                                <option value="b">隆基股份有限公司</option>
+                            <select class="am-form-field" data-am-selected="{btnSize: 'sm'}" id="checkenterpriseid" >
+                                <option value="">--请选择企业--</option>
+                                <%--                                <option value="a">公司腾讯科技有限</option>--%>
+                                <%--                                <option value="b">隆基股份有限公司</option>--%>
                             </select>
                         </div>
                     </div>
@@ -117,7 +118,7 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">开单日期</span>
                                 </span>
-                            <input type="text" class="am-form-field" data-am-datepicker
+                            <input id="select-date" type="text" class="am-form-field" data-am-datepicker
                                    placeholder="&nbsp;&nbsp;请选择日期"
                                    style="border: 1px solid #c2cad8;width: 68%;border-radius: 3px;">
                         </div>
@@ -129,12 +130,12 @@
                                 <span class="am-input-group-btn">
                                     <span style="font-size: 14px;margin-right: 8px;margin-left: 8px">凭证金额</span>
                                 </span>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最低金额(万)"
+                            <input id="amountMin" type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最低金额(万)"
                                    style="border: 1px solid #c2cad8;width: 23%;border-radius: 3px;">
                             <div class="am-form-field"
                                  style="width: 0%; border-radius: 3px;border: none;margin-left: 10px;">~
                             </div>
-                            <input type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最高金额(万)"
+                            <input id="amountMax" type="text" class="am-form-field" placeholder="&nbsp;&nbsp;最高金额(万)"
                                    style="border: 1px solid #c2cad8;width: 23%;border-radius: 3px;margin-left: 20px;">
                         </div>
                     </div>
@@ -158,102 +159,7 @@
                             </tr>
                             </thead>
                             <tbody id="doc-modal-list">
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220328000001</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D68</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
 
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220406000002</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D69</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220406000003</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D70</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220407000004</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D71</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td class="am-hide-sm-only">N20220407000005</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">1,000,000.00</td>
-                                <td class="am-hide-sm-only">腾讯科技有限公司</td>
-                                <td class="am-hide-sm-only">中国工商银行</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">2021-12-31</td>
-                                <td class="am-hide-sm-only">F64A3FA774552D72</td>
-                                <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="check-detail.jsp"><span class="am-text-secondary"
-                                                                             style="cursor:pointer"><span></span>
-                                                        复核</span></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                         <div class="am-cf">
@@ -281,7 +187,115 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
+
+<script type="text/javascript">
+    // $(document).ready(function () {
+    //     //1.窗体内容加载后，向后端服务器发送请求；
+    //     $.post("tickettpentervlet",function (asd) {
+    //         eval("var list2="+asd);      /*将字符串转成对象格式*/
+    //         for (var i = 0; i <list2.length ; i++) {
+    //             var obj="<option value='"+list2[i].enterprise_id+"'>"+list2[i].name+"</option>";
+    //             $(obj).appendTo($("[class='am-form-field']"));
+    //         }
+    //     });
+    // });
+
+    function selectticketview(ticketlist) {
+        $("[id='doc-modal-list']").empty();
+        eval("var ticketopentservletlist=" + ticketlist);
+        /*将字符串转成对象格式*/
+        var obj;
+        for (var i = 0; i < ticketopentservletlist.length; i++) {
+            obj = "<tr data-id='2' >" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].no + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].enp1name + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].amount + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].enp2name + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].insname + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].createTime + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].expiryTime + "</td>" +
+                "<td class='am-hide-sm-only'>" + ticketopentservletlist[i].uplink_address + "</td>";
+
+
+            if (ticketopentservletlist[i].status == "开单中") {
+                obj = obj +
+                    "<td >" +
+                    "<div class='am-btn-toolbar'>" +
+                    "<div class='am-btn-group am-btn-group-xs' id='buttonbystatus'>" +
+                    "<a href='check-detail.jsp?ticketopentservletstate=2&no=" + ticketopentservletlist[i].no + "'>" +
+                    "<span class='am-text-secondary' style='cursor:pointer'>" +
+                    "<span></span>复核</span></a>" +
+                    "</div></div>" +
+                    "</td>";
+                $(obj).appendTo($("[id='doc-modal-list']"));
+            }
+        }
+    }
+
+    function submitvalues() {
+        var nooooo0 = $("[id='certificate-number-no']").val();
+        var checkenter0 = $("[id='checkenterpriseid']").val();
+        var openticketenter0 = $("[id='openticketenterid']").val();
+        var dates0 = $("[id='select-date']").val();
+        var amountMin0 = $("[id='amountMin']").val();
+        var amountMax0 = $("[id='amountMax']").val();
+        $.get("ticketopentservlet","ticketopentservletstate=4&no=" + nooooo0 +
+            "&enterPriseId=" + openticketenter0 +
+            "&acquirerEnterPriseId=" + checkenter0 +
+            "&createtime=" + dates0 +
+            "&amountMax=" + amountMax0 +
+            "&amountMin=" + amountMin0, function (asd0) {
+            //收单企业下拉框
+            // /*将字符串转成对象格式*/
+            selectticketview(asd0)
+        });
+    }
+
+    $(document).ready(function () {
+        $.get("ticketopentservlet","ticketopentservletstate=1", function (list) {
+            selectticketview(list)
+        });
+
+        //1.窗体内容加载后，向后端服务器发送请求；
+        $.get("enterpriseservlet","enterpriseservletstate=1", function (asd0) {
+            //开单企业下拉框
+            eval("var list1=" + asd0);      /*将字符串转成对象格式*/
+            for (var i = 0; i < list1.length; i++) {
+                var obj = "<option value='" + list1[i].id + "'>" + list1[i].name + "</option>";
+                $(obj).appendTo($("[id='checkenterpriseid']"));
+            }
+        });
+
+        $.get("enterpriseservlet","enterpriseservletstate=1", function (asd1) {
+            //收单企业下拉框
+            eval("var list2=" + asd1);      /*将字符串转成对象格式*/
+            for (var i = 0; i < list2.length; i++) {
+                var obj = "<option value='" + list2[i].id + "'>" + list2[i].name + "</option>";
+                $(obj).appendTo($("[id='openticketenterid']"));
+            }
+        });
+
+        $("[id='openticketenterid']").change(function () {
+            submitvalues()
+        });
+
+        $("[id='checkenterpriseid']").change(function () {
+            submitvalues()
+        });
+        $("[id='certificate-number-no']").blur(function () {       //文本框失去焦点后
+            submitvalues()
+        });
+        $("[id='select-date']").blur(function () {       //文本框失去焦点后
+            alert($(this).val())
+            submitvalues()
+        });
+        $("[id='amountMin']").blur(function () {       //文本框失去焦点后
+            submitvalues()
+        });
+        $("[id='amountMax']").blur(function () {       //文本框失去焦点后
+            submitvalues()
+        });
+    });
 </script>
 </body>
 

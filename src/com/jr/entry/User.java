@@ -1,7 +1,7 @@
 package com.jr.entry;
 
 public class User {
-    private int id;
+       private int id;
     private String name;
     private String enterPriseId;
     private String phone;

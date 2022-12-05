@@ -3,24 +3,28 @@ package com.jr.biz.impl;
 import com.jr.biz.IEnterpriseBiz;
 import com.jr.dao.impl.EnterpriseDaoImpl;
 import com.jr.entry.Enterprise;
+import com.jr.util.DBHelper;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnterpriseBizImpl implements IEnterpriseBiz {
-    /*
-     * 通过id获取企业信息
-     * */
-    EnterpriseDaoImpl dao=new EnterpriseDaoImpl();
+    EnterpriseDaoImpl enterpriseDao = new EnterpriseDaoImpl();
+    Enterprise enterprise = new Enterprise();
 
     @Override
-    public Enterprise getEnterpriseInfo(int id) {
-      return dao.queryByid(id);
+    public Enterprise getInfoByEnterpriseID(int in) {
+        return enterpriseDao.queryEnterpriseByEnterpriseID(in);
     }
-    /*
-     *获取所有企业名称
-     * */
+
     @Override
-    public List<Enterprise> getAllEnterpriseNames() {
-        return dao.queryAllEnterpriseNames();
+    public List<Enterprise> getAllEnterprise() {
+        return enterpriseDao.queryAllEnterprise();
+
     }
 }

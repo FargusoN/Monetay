@@ -2,84 +2,53 @@ package com.jr.dao.impl;
 
 import com.jr.dao.IReviewrecordDao;
 import com.jr.entry.Reviewrecord;
-import com.jr.until.DBHelper;
+import com.jr.util.DBHelper;
+import com.jr.util.ViewUtility;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewrecordDaoImpl implements IReviewrecordDao {
-    Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    Reviewrecord reviewrecord1;
-    /**
-     * 插入审核记录
-     * */
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
+
     @Override
     public int insertReviewrecord(Reviewrecord reviewrecord) {
-    String sql="insert into review_record values(?,?,?,?,?,?)";
-    int i=upd(sql);
-    return i;
-
-    }
-    /**
-     * 根据开单id查询审核记录信息
-     * */
-    @Override
-    public Reviewrecord queryReviewrecord(int ticketId) {
-        try {
-            con=DBHelper.getconn();
-            String sql="select r.*,t.id from review_record r,ticket_open t where r.ticket_open_id=t.id";
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
-            while (rs.next()){
-                reviewrecord1=new Reviewrecord();
-                reviewrecord1.setId(rs.getInt(1));
-                reviewrecord1.setTicketOpenId(rs.getInt(2));
-                reviewrecord1.setCreatorId(rs.getInt(3));
-                reviewrecord1.setCreateTime(rs.getDate(4));
-                reviewrecord1.setReviewStatus(rs.getString(5));
-                reviewrecord1.setRemark(rs.getString(6));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DBHelper.closeAll(rs,ps,con);
-        }
-        return reviewrecord1;
-    }
-
-    /**
-     *增删改的通用方法
-     */
-    public int upd(String sql, Object... objs) {
-
         int num = 0;
         try {
             con = DBHelper.getconn();
+            String sql = "insert into review_record values(null,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
-            for (int i = 0; i < objs.length; i++) {
-                ps.setObject(i + 1, objs[i]);
-            }
+            ps.setInt(1, reviewrecord.getTicketOpenId());
+            ps.setInt(2, reviewrecord.getCreatorId());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(3, dateFormat.format(reviewrecord.getCreateTime()));
+            ps.setString(4, reviewrecord.getReviewStatus());
+            ps.setString(5, reviewrecord.getRemark());
             num = ps.executeUpdate();
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBHelper.closeAll(rs, ps, con);
         }
+
+
         return num;
+
+
+    }
+
+    @Override
+    public List<Reviewrecord> queryReviewrecordByTicketId(int ticketId) {
+        List<Reviewrecord> list = new ArrayList<>();
+
+
+        return list;
     }
 }
-

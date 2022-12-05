@@ -3,10 +3,10 @@ package com.jr.entry;
 import java.util.Date;
 
 public class Reviewrecord {
-    private int id;
-    private int ticketOpenId;
-    private int creatorId;
-    private Date createTime;
+       private int id;
+       private int ticketOpenId;
+       private int creatorId;
+      private Date createTime;
     private String reviewStatus;
     private String remark;
 
